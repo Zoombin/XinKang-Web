@@ -21,7 +21,7 @@ define('DB_NAME', 'xinkang');
 define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'Dsh12345');
 
 /** MySQL主机 */
 define('DB_HOST', 'localhost');
