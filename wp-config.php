@@ -27,7 +27,8 @@ define('DB_PASSWORD', 'Dsh12345');
 define('DB_HOST', 'localhost');
 
 /** 创建数据表时默认的文字编码 */
-define('DB_CHARSET', 'utf8mb4');
+// define('DB_CHARSET', 'utf8mb4');
+define('DB_CHARSET', 'utf8');
 
 /** 数据库整理类型。如不确定请勿更改 */
 define('DB_COLLATE', '');
