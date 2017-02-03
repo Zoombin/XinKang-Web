@@ -6,6 +6,7 @@ a {
 
 body {
   line-height: 1;
+  background-color: #888888;
 }
 
 ul {
@@ -14,6 +15,17 @@ ul {
   list-style: none;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
 
 .wrap {
   width: 1440px;
@@ -110,12 +122,14 @@ ul {
 /*养老环境*/
 .environment {
   padding-top: 50px;
-  text-align: center;
+  padding-bottom: 62px;
+  background-color: #fff;
 }
 
 .title {
   font-size: 30px;
   color: #000;
+  font-weight: bold;
 }
 
 .title-img {
@@ -124,3 +138,201 @@ ul {
   width: 67px;
   height: 27px;
 }
+
+.list {
+  margin-top: 42px;
+  font-size: 0;
+}
+
+.item-wrap {
+  display: inline-block;
+  vertical-align: top;
+  width: 404px;
+}
+
+.item-wrap + .item-wrap {
+  margin-left: 28px;
+}
+
+.item {
+  padding-right: 47px;
+}
+
+.item .title {
+  font-size: 24px;
+}
+
+.item .desc {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #888888;
+}
+
+.jingxin {
+  padding-left: 132px;
+  background: url(../img/jingxin.png) 64px top no-repeat;
+  background-size: 47px 70px;
+}
+
+.sheshi {
+  padding-left: 143px;
+  background: url(../img/sheshi.png) 55px top no-repeat;
+  background-size: 66px 64px;
+}
+
+.renwen {
+  padding-left: 143px;
+  background: url(../img/renwen.png) 42px top no-repeat;
+  background-size: 78px 52px;
+}
+
+
+/*唯真诚与爱心不可辜负*/
+
+/*重置*/
+.feature {
+  padding-top: 50px;
+  padding-bottom: 67px;
+  background-color: #f7f7f7;
+}
+
+.feature .item-wrap {
+  height: 459px;
+  background-color: #fff;
+}
+
+.feature .list {
+  margin-top: 60px;
+}
+
+.feature .item {
+  padding-right: 0;
+  padding: 12px 20px 0 20px;
+}
+
+.feature .item .title {
+  color: #1296db;
+}
+
+.feature .item .desc {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 22px;
+}
+/*重置 end*/
+
+
+.feature-img {
+  width: 100%;
+  height: 276px;
+  vertical-align: middle;
+}
+
+
+/*选择欣康，是服务也是责任*/
+/*重置*/
+.service .title-img {
+  display: inline-block;
+  vertical-align: middle;
+  width: 106px;
+  height: 24px;
+}
+
+/*重置end*/
+
+.service {
+  padding-top: 50px;
+  /*height: 574px;*/
+  background-color: #fff;
+}
+
+.service-img-wrap {
+  position: relative;
+  margin-top: 54px;
+  padding-bottom: 107px;
+}
+
+.service-img {
+  vertical-align: middle;
+  margin-left: 17px;
+}
+
+.service-item {
+  position: absolute;
+}
+
+.service-item .title {
+  font-size: 20px;
+}
+
+.service-item .desc {
+  margin-top: 9px;
+  line-height: 19px;
+  font-size: 16px;
+  color: #888888;
+}
+
+.zongzhi {
+  top: 20px;
+  left: 230px;
+}
+
+.fanwei {
+  top: 115px;
+  right: 130px;
+}
+
+.duixiang {
+  top: 335px;
+  left: 434px;
+}
+
+/*环境设施*/
+
+.facility {
+  padding-top: 50px;
+  padding-bottom: 65px;
+  background-color: #f7f7f7;
+}
+
+.facility .title {
+  margin-bottom: 66px;
+}
+
+.row {
+  font-size: 0;
+}
+
+.row + .row {
+  margin-top: 29px;
+}
+
+.col-item {
+  position: relative;
+  display: inline-block;
+
+}
+
+.col-item + .col-item {
+  margin-left: 26.66666666666666666px;
+}
+
+.col-img {
+  vertical-align: middle;
+  width: 297px;
+  height: 198px;
+}
+
+.col-text {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 24px;
+  color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+

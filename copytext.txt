@@ -1,0 +1,14 @@
+<div class="list-wrap">
+          <div class="item jingxin">
+            <div class="title text-left">静心养老</div>
+            <div class="desc text-left">欣康是苏州首家处于国家5A级风景区内的养老机构，采用医养结合的最新养老模式。</div>
+          </div>
+          <div class="item sheshi">
+            <div class="title text-left">设施完善</div>
+            <div class="desc text-left">院设日间照料中心、病人康复中心、电子阅览室、健身房、理疗室及多功能活动室。</div>
+          </div>
+          <div class="item renwen">
+            <div class="title text-left">人文关怀</div>
+            <div class="desc text-left">配有专职护理员，康复治疗师和营养师悉心照料，为老人健康保驾护航，晚年活得有尊严。</div>
+          </div>
+        </div>
