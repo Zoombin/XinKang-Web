@@ -1,0 +1,126 @@
+/*重置样式*/
+a {
+  text-decoration: none;
+  /*color: #fff;*/
+}
+
+body {
+  line-height: 1;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+
+.wrap {
+  width: 1440px;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 0 86px;
+}
+
+/*轮播图与头部导航*/
+.header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: #fff;
+  height: 122px;
+  background: url(../img/blur.png) left top no-repeat;
+  background-size: contain;
+}
+
+.header .container {
+  padding-top: 20px;
+}
+
+.header .name {
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.nav {
+  float: right;
+  font-size: 0;
+}
+
+.nav li {
+  display: inline-block;
+}
+
+.nav li + li {
+  margin-left: 60px;
+}
+
+.nav li a {
+  display: inline-block;
+  font-size: 18px;
+  padding: 6px 0;
+  color: inherit;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-imgs-wrap {
+  width: 300%;
+}
+
+.carousel-img {
+  float: left;
+  vertical-align: middle;
+}
+
+.carousel-circles-wrap {
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  bottom: 13px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 0;
+}
+
+.circle {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.circle + .circle {
+  margin-left: 21px;
+}
+
+.carousel-circles-wrap .active {
+  background-color: #7d7d7d;
+}
+
+
+/*养老环境*/
+.environment {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.title {
+  font-size: 30px;
+  color: #000;
+}
+
+.title-img {
+  display: inline-block;
+  margin-top: 8px;
+  width: 67px;
+  height: 27px;
+}
