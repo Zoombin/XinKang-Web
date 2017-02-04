@@ -1,8 +1,7 @@
-/*重置样式*/
+/*标签重置样式*/
 a {
   display: inline-block;
   text-decoration: none;
-  /*color: #fff;*/
 }
 
 a:hover {
@@ -11,7 +10,7 @@ a:hover {
 
 body {
   line-height: 1;
-  background-color: #888888;
+  background-color: #fff;
   padding: 0;
   margin: 0;
 }
@@ -26,6 +25,10 @@ img {
   vertical-align: middle;
 }
 
+/*标签重置end*/
+
+
+/*常用样式*/
 .ftsize_zero {
   font-size: 0;
 }
@@ -62,7 +65,6 @@ img {
   font-weight: bold;
 }
 
-
 .bg_fff {
   background-color: #fff;
 }
@@ -75,43 +77,41 @@ img {
   padding-top: 50px;
 }
 
-.wrap {
-  width: 1440px;
-  margin: 0 auto;
-}
+/*常用样式end*/
+
 
 .container {
   /*padding: 0 86px;*/
-  padding-left: 86px;
-  padding-right: 86px;
+  width: 1000px;
+  margin: 0 auto;
 }
 
 /*轮播图与头部导航*/
-.header {
+.header-wrap {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   color: #fff;
   height: 122px;
-  /*background: url(../img/blur.png) left top no-repeat;*/
-  /*background-size: contain;*/
   background-image: -webkit-linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
   background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
 }
 
-.header .container {
+.header{
   padding-top: 20px;
+  width: 100%;
 }
 
 .header .name {
   display: inline-block;
+  margin-left: 86px;
   font-size: 30px;
-  /*font-weight: bold;*/
 }
 
 .nav {
   float: right;
+  margin-right: 86px;
   font-size: 0;
 }
 
@@ -132,15 +132,21 @@ img {
 
 .carousel {
   position: relative;
+  width: 100%;
+  min-width: 1000px;
   overflow: hidden;
 }
 
 .carousel-imgs-wrap {
+  /*根据图片数量而定*/
   width: 300%;
 }
 
 .carousel-img {
   float: left;
+  /*根据图片数量而定*/
+  width: 33.333333333333333333333%;
+  max-width: 100%;
 }
 
 .carousel-circles-wrap {
@@ -172,15 +178,11 @@ img {
 
 /*养老环境*/
 .environment {
-  /*padding-top: 50px;*/
   padding-bottom: 62px;
-  /*background-color: #fff;*/
 }
 
 .title {
   font-size: 30px;
-  /*color: #000;*/
-  /*font-weight: bold;*/
 }
 
 .title-img {
@@ -198,15 +200,15 @@ img {
 .item-wrap {
   display: inline-block;
   vertical-align: top;
-  width: 404px;
+  width: 318.6666666666666666px;
 }
 
 .item-wrap + .item-wrap {
-  margin-left: 28px;
+  margin-left: 22px;
 }
 
 .item {
-  padding-right: 47px;
+  /*padding-right: 47px;*/
 }
 
 .item .title {
@@ -221,20 +223,20 @@ img {
 }
 
 .jingxin {
-  padding-left: 132px;
-  background: url(../img/jingxin.png) 64px top no-repeat;
+  padding-left: 68px;
+  background: url(../img/jingxin.png) left top no-repeat;
   background-size: 47px 70px;
 }
 
 .sheshi {
-  padding-left: 143px;
-  background: url(../img/sheshi.png) 55px top no-repeat;
+  padding-left: 88px;
+  background: url(../img/sheshi.png) left top no-repeat;
   background-size: 66px 64px;
 }
 
 .renwen {
-  padding-left: 143px;
-  background: url(../img/renwen.png) 42px top no-repeat;
+  padding-left: 101px;
+  background: url(../img/renwen.png) left top no-repeat;
   background-size: 78px 52px;
 }
 
@@ -242,15 +244,8 @@ img {
 /*唯真诚与爱心不可辜负*/
 
 /*重置*/
-.feature {
-  /*padding-top: 50px;*/
-  padding-bottom: 67px;
-  /*background-color: #f7f7f7;*/
-}
-
 .feature .item-wrap {
-  height: 459px;
-  /*background-color: #fff;*/
+  height: 500px;
 }
 
 .feature .list {
@@ -262,10 +257,6 @@ img {
   padding: 12px 20px 0 20px;
 }
 
-.feature .item .title {
-  /*color: #1296db;*/
-}
-
 .feature .item .desc {
   margin-top: 10px;
   font-size: 16px;
@@ -273,10 +264,12 @@ img {
 }
 /*重置 end*/
 
+.feature {
+  padding-bottom: 67px;
+}
 
 .feature-img {
   width: 100%;
-  height: 276px;
 }
 
 
@@ -291,15 +284,12 @@ img {
 /*重置end*/
 
 .service {
-  /*padding-top: 50px;*/
-  /*height: 574px;*/
-  /*background-color: #fff;*/
+  padding-bottom: 107px;
 }
 
 .service-img-wrap {
   position: relative;
   margin-top: 54px;
-  padding-bottom: 107px;
 }
 
 .service-img {
@@ -318,30 +308,27 @@ img {
   margin-top: 9px;
   line-height: 19px;
   font-size: 16px;
-  /*color: #888888;*/
 }
 
 .zongzhi {
   top: 20px;
-  left: 230px;
+  left: 100px;
 }
 
 .fanwei {
   top: 115px;
-  right: 130px;
+  right: 0px;
 }
 
 .duixiang {
   top: 335px;
-  left: 434px;
+  left: 304px;
 }
 
 /*环境设施*/
 
 .facility {
-  /*padding-top: 50px;*/
   padding-bottom: 65px;
-  /*background-color: #f7f7f7;*/
 }
 
 .facility .title {
@@ -359,17 +346,15 @@ img {
 .col-item {
   position: relative;
   display: inline-block;
-
+  width: 238px;
 }
 
 .col-item + .col-item {
-  margin-left: 26.66666666666666666px;
+  margin-left: 16px;
 }
 
 .col-img {
-  /*vertical-align: middle;*/
-  width: 297px;
-  height: 198px;
+  width: 100%;
 }
 
 .col-text {
@@ -386,8 +371,6 @@ img {
 
 /*关于欣康*/
 .about {
-  /*padding-top: 50px;*/
-  /*background-color: #fff;*/
   border-bottom: 4px solid #1296db;
 }
 
@@ -396,20 +379,17 @@ img {
 }
 
 .about .desc {
-  /*text-indent: 36px;*/
   font-size: 18px;
   line-height: 30px;
-  /*color: #888888;*/
 }
 
 .about .desc + .desc {
   margin-top: 10px;
 }
 
-
 .contact-wrap {
   position: relative;
-  padding-left: 125px;
+  padding-left: 70px;
   padding-bottom: 48px;
 }
 
@@ -421,7 +401,7 @@ img {
 
 .position {
   position: absolute;
-  left: 722px;
+  left: 652px;
   top: 20px;
   padding-left: 55px;
   background: url(../img/position.png) left top no-repeat;
@@ -430,7 +410,7 @@ img {
 
 .tel {
   position: absolute;
-  left: 722px;
+  left: 652px;
   top: 195px;
   padding-left: 74px;
   background: url(../img/tel.png) left 8px no-repeat;
@@ -463,8 +443,6 @@ img {
 }
 
 .msg-wrap .msg-item:first-child {
-  /*color: red;*/
-  /*padding-left: 26px;*/
   padding: 1.5px 0 1.5px 26px;
   background: url(../img/visit.png) left top no-repeat;
   background-size: 21px 21px;
@@ -482,12 +460,3 @@ img {
 .zongbin {
   margin-left: 8px;
 }
-
-
-
-
-
-
-
-
-
