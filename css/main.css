@@ -1,7 +1,12 @@
 /*重置样式*/
 a {
+  display: inline-block;
   text-decoration: none;
   /*color: #fff;*/
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 body {
@@ -13,6 +18,14 @@ ul {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.ftsize_zero {
+  font-size: 0;
 }
 
 .text-center {
@@ -27,13 +40,48 @@ ul {
   text-align: right;
 }
 
+.color_fff {
+  color: #fff;
+}
+
+.color_888 {
+  color: #888;
+}
+
+.color_000 {
+  color: #000;
+}
+
+.color_1296db {
+  color: #1296db;
+}
+
+.textbold {
+  font-weight: bold;
+}
+
+
+.bg_fff {
+  background-color: #fff;
+}
+
+.bg_f7f7f7 {
+  background-color: #f7f7f7;
+}
+
+.padding-top-50 {
+  padding-top: 50px;
+}
+
 .wrap {
   width: 1440px;
   margin: 0 auto;
 }
 
 .container {
-  padding: 0 86px;
+  /*padding: 0 86px;*/
+  padding-left: 86px;
+  padding-right: 86px;
 }
 
 /*轮播图与头部导航*/
@@ -44,8 +92,10 @@ ul {
   width: 100%;
   color: #fff;
   height: 122px;
-  background: url(../img/blur.png) left top no-repeat;
-  background-size: contain;
+  /*background: url(../img/blur.png) left top no-repeat;*/
+  /*background-size: contain;*/
+  background-image: -webkit-linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
 }
 
 .header .container {
@@ -55,7 +105,7 @@ ul {
 .header .name {
   display: inline-block;
   font-size: 30px;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .nav {
@@ -89,7 +139,6 @@ ul {
 
 .carousel-img {
   float: left;
-  vertical-align: middle;
 }
 
 .carousel-circles-wrap {
@@ -121,15 +170,15 @@ ul {
 
 /*养老环境*/
 .environment {
-  padding-top: 50px;
+  /*padding-top: 50px;*/
   padding-bottom: 62px;
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 
 .title {
   font-size: 30px;
-  color: #000;
-  font-weight: bold;
+  /*color: #000;*/
+  /*font-weight: bold;*/
 }
 
 .title-img {
@@ -166,7 +215,7 @@ ul {
   margin-top: 6px;
   font-size: 15px;
   line-height: 24px;
-  color: #888888;
+  /*color: #888888;*/
 }
 
 .jingxin {
@@ -192,14 +241,14 @@ ul {
 
 /*重置*/
 .feature {
-  padding-top: 50px;
+  /*padding-top: 50px;*/
   padding-bottom: 67px;
-  background-color: #f7f7f7;
+  /*background-color: #f7f7f7;*/
 }
 
 .feature .item-wrap {
   height: 459px;
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 
 .feature .list {
@@ -212,7 +261,7 @@ ul {
 }
 
 .feature .item .title {
-  color: #1296db;
+  /*color: #1296db;*/
 }
 
 .feature .item .desc {
@@ -226,7 +275,6 @@ ul {
 .feature-img {
   width: 100%;
   height: 276px;
-  vertical-align: middle;
 }
 
 
@@ -234,7 +282,6 @@ ul {
 /*重置*/
 .service .title-img {
   display: inline-block;
-  vertical-align: middle;
   width: 106px;
   height: 24px;
 }
@@ -242,9 +289,9 @@ ul {
 /*重置end*/
 
 .service {
-  padding-top: 50px;
+  /*padding-top: 50px;*/
   /*height: 574px;*/
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 
 .service-img-wrap {
@@ -254,7 +301,6 @@ ul {
 }
 
 .service-img {
-  vertical-align: middle;
   margin-left: 17px;
 }
 
@@ -270,7 +316,7 @@ ul {
   margin-top: 9px;
   line-height: 19px;
   font-size: 16px;
-  color: #888888;
+  /*color: #888888;*/
 }
 
 .zongzhi {
@@ -291,9 +337,9 @@ ul {
 /*环境设施*/
 
 .facility {
-  padding-top: 50px;
+  /*padding-top: 50px;*/
   padding-bottom: 65px;
-  background-color: #f7f7f7;
+  /*background-color: #f7f7f7;*/
 }
 
 .facility .title {
@@ -319,7 +365,7 @@ ul {
 }
 
 .col-img {
-  vertical-align: middle;
+  /*vertical-align: middle;*/
   width: 297px;
   height: 198px;
 }
@@ -335,4 +381,111 @@ ul {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+/*关于欣康*/
+.about {
+  /*padding-top: 50px;*/
+  /*background-color: #fff;*/
+  border-bottom: 4px solid #1296db;
+}
+
+.about .desc-wrap {
+  padding: 28px 22px 37px;
+}
+
+.about .desc {
+  /*text-indent: 36px;*/
+  font-size: 18px;
+  line-height: 30px;
+  /*color: #888888;*/
+}
+
+.about .desc + .desc {
+  margin-top: 10px;
+}
+
+
+.contact-wrap {
+  position: relative;
+  padding-left: 125px;
+  padding-bottom: 48px;
+}
+
+.map {
+  width: 486px;
+  height: 270px;
+  border: 4px solid #1296db;
+}
+
+.position {
+  position: absolute;
+  left: 722px;
+  top: 20px;
+  padding-left: 55px;
+  background: url(../img/position.png) left top no-repeat;
+  background-size: 40px 57px;
+}
+
+.tel {
+  position: absolute;
+  left: 722px;
+  top: 195px;
+  padding-left: 74px;
+  background: url(../img/tel.png) left 8px no-repeat;
+  background-size: 58px 42px;
+}
+
+.tel .color_000 + .color_000,
+.position .color_888 {
+  padding-top: 7px;
+}
+
+.position .color_888 {
+  font-size: 16px;
+}
+
+.contact-wrap .color_000 {
+  font-size: 18px;
+}
+
+/*尾部*/
+.footer {
+  padding-top: 20px;
+  padding-bottom: 16px;
+  box-shadow: 0 -5px 10px 0 #e4e4e4 inset; 
+}
+
+.copyright {
+  font-size: 18px;
+  padding-bottom: 12px;
+}
+
+.msg-wrap .msg-item:first-child {
+  /*color: red;*/
+  /*padding-left: 26px;*/
+  padding: 1.5px 0 1.5px 26px;
+  background: url(../img/visit.png) left top no-repeat;
+  background-size: 21px 21px;
+}
+
+.msg-item {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.msg-item + .msg-item {
+  margin-left: 20px;
+}
+
+.zongbin {
+  margin-left: 8px;
+}
+
+
+
+
+
+
+
+
 
