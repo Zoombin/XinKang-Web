@@ -12,6 +12,8 @@ a:hover {
 body {
   line-height: 1;
   background-color: #888888;
+  padding: 0;
+  margin: 0;
 }
 
 ul {
