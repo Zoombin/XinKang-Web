@@ -13,6 +13,7 @@ body {
   background-color: #fff;
   padding: 0;
   margin: 0;
+  font-family: "PingFang SC", sans-serif;
 }
 
 ul {
@@ -61,8 +62,20 @@ img {
   color: #1296db;
 }
 
+.textlighter{
+  font-weight: 100;
+}
+
+.textlight {
+  font-weight: 300;
+}
+
+.textmedium {
+  font-weight: 400;
+}
+
 .textbold {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .bg_fff {
@@ -91,6 +104,7 @@ img {
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 2;
   width: 100%;
   color: #fff;
   height: 122px;
@@ -107,6 +121,7 @@ img {
   display: inline-block;
   margin-left: 86px;
   font-size: 30px;
+  /*font-family: PingFangSC-Medium, sans-serif;*/
 }
 
 .nav {
@@ -126,8 +141,13 @@ img {
 .nav li a {
   display: inline-block;
   font-size: 18px;
+  /*font-family: PingFangSC-Light, sans-serif;*/
   padding: 6px 0;
   color: inherit;
+}
+
+.nav li a:hover {
+  text-decoration: none;
 }
 
 .carousel {
@@ -138,20 +158,30 @@ img {
 }
 
 .carousel-imgs-wrap {
+  position: relative;
+  z-index: 1;
   /*根据图片数量而定*/
-  width: 300%;
+  width: 500%;
+}
+
+.carousel-imgs-wrap::after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
 }
 
 .carousel-img {
   float: left;
   /*根据图片数量而定*/
-  width: 33.333333333333333333333%;
+  width: 20%;
   max-width: 100%;
 }
 
 .carousel-circles-wrap {
   position: absolute;
   display: inline-block;
+  z-index: 2;
   left: 50%;
   bottom: 13px;
   -webkit-transform: translateX(-50%);
@@ -167,12 +197,20 @@ img {
   background-color: #fff;
 }
 
+.circle:hover {
+  cursor: pointer;
+}
+
 .circle + .circle {
   margin-left: 21px;
 }
 
 .carousel-circles-wrap .active {
   background-color: #7d7d7d;
+}
+
+.next-arrow {
+  display: none;
 }
 
 
@@ -217,7 +255,7 @@ img {
 
 .item .desc {
   margin-top: 6px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 24px;
   /*color: #888888;*/
 }
@@ -245,7 +283,7 @@ img {
 
 /*重置*/
 .feature .item-wrap {
-  height: 500px;
+  height: 450px;
 }
 
 .feature .list {
@@ -363,6 +401,7 @@ img {
   bottom: 0;
   font-size: 24px;
   color: #fff;
+  white-space: 3px;
   padding: 10px 0;
   width: 100%;
   text-align: center;

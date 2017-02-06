@@ -8,62 +8,205 @@
   </head>
   <body>
 
-    <div class="carousel">
+    <div id="carousel" class="carousel">
       <div class="header-wrap">
         <div class="header">
-          <div class="name textbold">苏州欣康护理院</div>
-          <ul class="nav">
-            <li><a href="#facility">环境设施</a></li>
-            <li><a href="#">欣康服务</a></li>
-            <li><a href="#">老有所养</a></li>
-            <li><a href="#">关于欣康</a></li>
+          <div class="name textmedium">苏州欣康护理院</div>
+          <ul class="nav textlight">
+            <li><a href="#target_feature">老有所养</a></li>
+            <li><a href="#target_service">欣康服务</a></li>
+            <li><a href="#target_facility">环境设施</a></li>
+            <li><a href="#target_about">关于欣康</a></li>
           </ul>
         </div>
       </div>
-      <div class="carousel-imgs-wrap">
+      <div id="carousel-imgs-wrap" class="carousel-imgs-wrap" style="top: 0;left: -100%;">
+        <img class="carousel-img" src="./img/carousel-3.jpg" alt="护理医生">
         <img class="carousel-img" src="./img/carousel-1.jpg" alt="苏州首家5A级景区内养老机构">
         <img class="carousel-img" src="./img/carousel-2.jpg" alt="服务对象">
         <img class="carousel-img" src="./img/carousel-3.jpg" alt="护理医生">
+        <img class="carousel-img" src="./img/carousel-1.jpg" alt="苏州首家5A级景区内养老机构">
       </div>
-      <div class="carousel-circles-wrap">
-        <span class="circle"></span>
-        <span class="circle"></span>
-        <span class="circle"></span>
+      <div id="carousel-circles-wrap" class="carousel-circles-wrap">
+        <span data-index="1" class="circle"></span>
+        <span data-index="2" class="circle"></span>
+        <span data-index="3" class="circle"></span>
       </div>
+      <!--<a id="prev" style="display: hidden" class="prev" href="javascript:;">&lt;</a>-->
+      <a id="next" class="next-arrow" href="javascript:;"></a>
     </div>
+
+    <script>
+      var carousel = document.getElementById('carousel'),
+          imgList = document.getElementById('carousel-imgs-wrap'),
+          circles = document.getElementById('carousel-circles-wrap').getElementsByTagName('span'),
+          prev = document.getElementById('prev'),
+          next = document.getElementById('next'),
+          index = 1,  //当前激活的圆点
+          len = imgList.getElementsByTagName('img').length,
+          isAnimated = false, //动画状态
+          // interval = 3000,
+          timer = null, //自动播放定时器
+          minLeft = -100,  
+          maxLeft = -(len - 2) * 100,
+          activeCls = 'active';
+      
+      // 清楚圆点上的激活状态
+      function clearActive() {
+        for (var i = 0 ; i < circles.length ; i++) {
+          if (circles[i].className.indexOf(activeCls) !== -1) {
+            circles[i].className = "circle"
+            break;
+          }
+        }
+      }
+
+      // 为对应圆点添加激活状态
+      function showCircle() {
+        clearActive();
+        var circle = circles[index - 1];
+        circle.className += " " + activeCls;
+      }
+
+      // 动画函数,内部使用setTimeout执行定时递归
+      function animate(offset) {
+        isAnimated = true;
+        var newLeft = getNum(imgList.style.left) + offset,
+            time = 450, //位移总时间
+            interval = 10, //位移间隔时间
+            speed = offset / (time / interval);  //每次位移量
+        
+        function go() {
+          // 容器框向右移动,视觉上图片向左移动
+          var currentLeft = getNum(imgList.style.left);
+          if ((speed < 0 && currentLeft > newLeft) || (speed > 0 && currentLeft < newLeft)) {
+            imgList.style.left = currentLeft + speed + '%';
+            // 没有到达限定值则继续执行go
+            setTimeout(go, interval);
+          } else {
+            // 到达限定值,更改动画状态量,并且判断是否移动到第一和最后一张的附属图片
+            isAnimated = false;
+            imgList.style.left = newLeft + '%';
+            if (newLeft > minLeft) {
+              imgList.style.left = maxLeft + '%';
+            } else if (newLeft < maxLeft) {
+              imgList.style.left = minLeft + '%';
+            }
+          }
+        }
+
+
+        go();
+      }
+
+      // 使用setInterval执行自动播放
+      function play() {
+        timer = setInterval(function(){
+          next.onclick();
+        },3000);
+      }
+
+      // 清楚timer定时器,取消自动播放
+      function stop() {
+        clearInterval(timer);
+      }
+
+      // 自动播放实际就是间隔固定时间点击next按钮
+      // next点击时间内部执行动画
+      next.onclick = function() {
+        if (isAnimated) return false;
+        if (index === circles.length) {
+          index = 1;
+        } else {
+          index++;
+        }
+        animate(-100);
+        showCircle();
+        return false;
+      }
+
+      // prev.onclick = function() {
+      //   if (isAnimated) return false;
+      //   if (index === 1) {
+      //     index = circles.length;
+      //   } else {
+      //     index--;
+      //   }
+      //   animate(100);
+      //   showCircle();
+      //   return false;
+      // }
+
+      // 取消自动播放
+      imgList.onmouseover = function() {
+        console.log("一上去");
+        stop();
+        return false;
+      }
+
+      // 执行自动播放
+      imgList.onmouseout = function() {
+        play();
+        return false;
+      }
+
+      // 为圆点绑定事件
+      for(var i = 0; i < circles.length; i++) {
+        circles[i].onclick = function() {
+          if (this.className.indexOf(activeCls) !== -1) {
+            // console.log("不动");
+            return false;
+          }
+          if (isAnimated) return false;
+          var myindex = parseInt(this.getAttribute('data-index'));
+          var offset = -100 * (myindex -  index);
+          animate(offset);
+          index = myindex;
+          showCircle();
+          return false;
+        }
+      }
+      play();
+      
+
+      function getNum(str) {
+        return parseInt(str.replace("%",""));
+      }
+      showCircle();
+    </script>
 
 
     <!--<div class="wrap">-->
     <div class="environment bg_fff padding-top-50">
       <div class="container  text-center ">
-        <div class="title text-center color_000 textbold">为老人提供温馨舒适的养老环境</div>
+        <div class="title text-center color_000">为老人提供温馨舒适的养老环境</div>
         <img class="title-img" src="./img/envir.png" alt="温馨的养老环境">
         <div class="list text-left">
           <div class="item-wrap">
             <div class="item jingxin">
               <div class="title text-left">静心养老</div>
-              <div class="desc text-left color_888">欣康是苏州首家处于国家5A级风景区内的养老机构，采用医养结合的最新养老模式。</div>
+              <div class="desc text-left textlight color_888">欣康是苏州首家处于国家5A级风景区内的养老机构，采用医养结合的最新养老模式。</div>
             </div>
           </div>
           <div class="item-wrap">
             <div class="item sheshi">
               <div class="title text-left">设施完善</div>
-              <div class="desc text-left color_888">院设日间照料中心、病人康复中心、电子阅览室、健身房、理疗室及多功能活动室。</div>
+              <div class="desc text-left textlight color_888">院设日间照料中心、病人康复中心、电子阅览室、健身房、理疗室及多功能活动室。</div>
             </div>
           </div>
           <div class="item-wrap">
             <div class="item renwen">
               <div class="title text-left">人文关怀</div>
-              <div class="desc text-left color_888">配有专职护理员，康复治疗师和营养师悉心照料，为老人健康保驾护航，晚年活得有尊严。</div>
+              <div class="desc text-left textlight color_888">配有专职护理员，康复治疗师和营养师悉心照料，为老人健康保驾护航，晚年活得有尊严。</div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="feature padding-top-50 bg_f7f7f7">
+    <div id="target_feature" class="feature padding-top-50 bg_f7f7f7">
       <div class="container">
-        <div class="title text-center color_000 textbold">唯真诚与爱心不可辜负</div>
+        <div class="title text-center color_000">唯真诚与爱心不可辜负</div>
         <div class="list">
           <div class="item-wrap bg_fff">
             <img class="feature-img" src="./img/feature-1.jpg" alt="真诚·呵护健康">
@@ -96,7 +239,7 @@
       </div>
     </div>
 
-    <div class="service bg_fff padding-top-50">
+    <div id="target_service" class="service bg_fff padding-top-50">
       <div class="container text-center">
         <div class="title text-center">选择欣康，是服务也是责任</div>
         <img class="title-img" src="./img/heart.png" alt="选择欣康，是服务也是责任">
@@ -118,7 +261,7 @@
       </div>
     </div>
 
-    <div id="facility" class="facility padding-top-50 bg_f7f7f7">
+    <div id="target_facility" class="facility padding-top-50 bg_f7f7f7">
       <div  class="container">
         <div class="title text-center">环境设施</div>
         <div class="row">
@@ -160,7 +303,7 @@
       </div>
     </div>
 
-    <div class="about padding-top-50 bg_fff">
+    <div id="target_about" class="about padding-top-50 bg_fff">
       <div class="container">
         <div class="title text-center">关于欣康</div>
         <div class="desc-wrap">
@@ -182,7 +325,7 @@
           </div>
         </div>
         <div class="contact-wrap">
-          <div class="map"></div>
+          <iframe class="map" src="/map.html" frameborder="0" scrolling="no"></iframe>
           <div class="position">
             <div class="color_000 textbold">地址：苏州木渎灵天路589号</div>
             <div class="color_888">公交车（游4、315、662、4路）</div>
@@ -198,16 +341,13 @@
     </div>
 
     <div class="footer bg_f7f7f7">
-      <div class="container">
-        <div class="text-center ftsize_zero"><a class="copyright color_1296db" href="#">Copyright © 2016.苏州欣康护理院 All Rights Reserved.</a></div>
-        <div class="text-center ftsize_zero">
-          <div class="msg-wrap ftsize_zero">
-            <span class="msg-item color_1296db">访问数：<span class="num">2947</span></span>
-            <span class="msg-item">网站服务商<a class="zongbin color_1296db" href="http://www.zoombin.com/" target="_blank">纵缤科技</a></span>
-          </div>
+      <div class="text-center ftsize_zero"><a class="copyright color_1296db" href="#">Copyright © 2016.苏州欣康护理院 All Rights Reserved.</a></div>
+      <div class="text-center ftsize_zero">
+        <div class="msg-wrap ftsize_zero">
+          <span class="msg-item color_1296db">访问数：<span class="num">2947</span></span>
+          <span class="msg-item">网站服务商<a class="zongbin color_1296db" href="http://www.zoombin.com/" target="_blank">纵缤科技</a></span>
         </div>
       </div>
     </div>
-    <!--</div>-->
   </body>
 </html>
