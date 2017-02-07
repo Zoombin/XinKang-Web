@@ -3,29 +3,31 @@
   <head>
     <title></title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" 
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.5,
+    minimum-scale=1.0,telephone=no">
     <link href="./css/main.css" rel="stylesheet">
   </head>
   <body>
 
     <div id="carousel" class="carousel">
       <div class="header-wrap">
-        <div class="header">
-          <div class="name textmedium">苏州欣康护理院</div>
-          <ul class="nav textlight">
-            <li><a href="#target_feature">老有所养</a></li>
-            <li><a href="#target_service">欣康服务</a></li>
-            <li><a href="#target_facility">环境设施</a></li>
-            <li><a href="#target_about">关于欣康</a></li>
+        <div class="header container clearfix">
+          <div class="name textmedium ft12to30">苏州欣康护理院</div>
+          <ul class="nav textlight ftsize_zero">
+            <li><a href="#target_feature" class="ft9to18">老有所养</a></li>
+            <li><a href="#target_service" class="ft9to18">欣康服务</a></li>
+            <li><a href="#target_facility" class="ft9to18">环境设施</a></li>
+            <li><a href="#target_about" class="ft9to18">关于欣康</a></li>
           </ul>
         </div>
       </div>
-      <div id="carousel-imgs-wrap" class="carousel-imgs-wrap" style="top: 0;left: -100%;">
-        <img class="carousel-img" src="./img/carousel-3.jpg" alt="护理医生">
-        <img class="carousel-img" src="./img/carousel-1.jpg" alt="苏州首家5A级景区内养老机构">
-        <img class="carousel-img" src="./img/carousel-2.jpg" alt="服务对象">
-        <img class="carousel-img" src="./img/carousel-3.jpg" alt="护理医生">
-        <img class="carousel-img" src="./img/carousel-1.jpg" alt="苏州首家5A级景区内养老机构">
+      <div id="carousel-imgs-wrap" class="carousel-imgs-wrap clearfix" style="top: 0;left: -100%;">
+        <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="护理医生">
+        <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="苏州首家5A级景区内养老机构">
+        <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="服务对象">
+        <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="护理医生">
+        <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="苏州首家5A级景区内养老机构">
       </div>
       <div id="carousel-circles-wrap" class="carousel-circles-wrap">
         <span data-index="1" class="circle"></span>
@@ -35,6 +37,42 @@
       <!--<a id="prev" style="display: hidden" class="prev" href="javascript:;">&lt;</a>-->
       <a id="next" class="next-arrow" href="javascript:;"></a>
     </div>
+
+    <script>
+      var imgPath = "./img/",
+          name = "carousel",
+          phonePrefix = "phone";
+      function changeImgSrc() {
+        var width = window.innerWidth ? window.innerWidth : screen.width;
+        var isPhone = false;
+        if (width >= 320 && width <768) {
+          isPhone = true;
+        } else if (width >= 768) {
+          isPhone = false;
+        }
+
+        var imgList = document.getElementById('carousel-imgs-wrap').getElementsByTagName('img'),
+            len = imgList.length,
+            true_len = len - 2,
+            num = null,
+            current = null;
+        for (var i = 1; i <= len; i++) {
+          current = imgList[i-1];
+          if (i === 1) {
+            num = true_len;
+          } else if (i === len) {
+            num = 1;
+          } else {
+            num = i-1;
+          }
+
+          if(isPhone) current.src = imgPath + phonePrefix + '-' + name + '-' + num + '.jpg';
+          else current.src = imgPath + name + '-' + num + '.jpg';
+        }
+      }
+
+      changeImgSrc();
+    </script>
 
     <script>
       var carousel = document.getElementById('carousel'),
@@ -49,23 +87,27 @@
           timer = null, //自动播放定时器
           minLeft = -100,  
           maxLeft = -(len - 2) * 100,
-          activeCls = 'active';
+          activeCls = 'active',
+          circleCls = 'circle';
+
+      function getNum(str) {
+        return parseInt(str.replace("%",""));
+      }
       
       // 清楚圆点上的激活状态
-      function clearActive() {
+      function clearActive(containCls, replaceCls) {
         for (var i = 0 ; i < circles.length ; i++) {
-          if (circles[i].className.indexOf(activeCls) !== -1) {
-            circles[i].className = "circle"
+          if (circles[i].className.indexOf(containCls) !== -1) {
+            circles[i].className = replaceCls;
             break;
           }
         }
       }
 
       // 为对应圆点添加激活状态
-      function showCircle() {
-        clearActive();
-        var circle = circles[index - 1];
-        circle.className += " " + activeCls;
+      function showCircle(circle, addCls) {
+        clearActive(activeCls, circleCls);
+        circle.className += " " + addCls;
       }
 
       // 动画函数,内部使用setTimeout执行定时递归
@@ -94,8 +136,6 @@
             }
           }
         }
-
-
         go();
       }
 
@@ -121,7 +161,7 @@
           index++;
         }
         animate(-100);
-        showCircle();
+        showCircle(circles[index - 1], activeCls);
         return false;
       }
 
@@ -138,187 +178,173 @@
       // }
 
       // 取消自动播放
-      imgList.onmouseover = function() {
-        console.log("一上去");
-        stop();
-        return false;
-      }
+      // imgList.onmouseover = function() {
+      //   // console.log("一上去");
+      //   stop();
+      //   return false;
+      // }
 
-      // 执行自动播放
-      imgList.onmouseout = function() {
-        play();
-        return false;
-      }
+      // // 执行自动播放
+      // imgList.onmouseout = function() {
+      //   play();
+      //   return false;
+      // }
 
       // 为圆点绑定事件
-      for(var i = 0; i < circles.length; i++) {
-        circles[i].onclick = function() {
-          if (this.className.indexOf(activeCls) !== -1) {
-            // console.log("不动");
-            return false;
-          }
-          if (isAnimated) return false;
-          var myindex = parseInt(this.getAttribute('data-index'));
-          var offset = -100 * (myindex -  index);
-          animate(offset);
-          index = myindex;
-          showCircle();
-          return false;
-        }
-      }
+      // for(var i = 0; i < circles.length; i++) {
+      //   circles[i].onclick = function() {
+      //     if (this.className.indexOf(activeCls) !== -1) {
+      //       // console.log("不动");
+      //       return false;
+      //     }
+      //     if (isAnimated) return false;
+      //     var myindex = parseInt(this.getAttribute('data-index'));
+      //     var offset = -100 * (myindex -  index);
+      //     animate(offset);
+      //     index = myindex;
+      //     showCircle(circles[index - 1], activeCls);
+      //     return false;
+      //   }
+      // }
+      showCircle(circles[index - 1], activeCls);
       play();
-      
-
-      function getNum(str) {
-        return parseInt(str.replace("%",""));
-      }
-      showCircle();
     </script>
 
 
-    <!--<div class="wrap">-->
-    <div class="environment bg_fff padding-top-50">
-      <div class="container  text-center ">
-        <div class="title text-center color_000">为老人提供温馨舒适的养老环境</div>
+    <div class="environment padding_main bg_fff">
+      <div class="container text-center ">
+        <div class="title ft12to30 text-center color_000">为老人提供温馨舒适的养老环境</div>
         <img class="title-img" src="./img/envir.png" alt="温馨的养老环境">
-        <div class="list text-left">
-          <div class="item-wrap">
-            <div class="item jingxin">
-              <div class="title text-left">静心养老</div>
-              <div class="desc text-left textlight color_888">欣康是苏州首家处于国家5A级风景区内的养老机构，采用医养结合的最新养老模式。</div>
-            </div>
+        <div class="list text-left ftsize_zero">
+          <div class="item jingxin">
+          <div class="title ft11to24 text-left">静心养老</div>
+            <div class="desc ft9to16 text-left textlight color_888">欣康是苏州首家处于国家5A级风景区内的养老机构，采用医养结合的最新养老模式。</div>
           </div>
-          <div class="item-wrap">
-            <div class="item sheshi">
-              <div class="title text-left">设施完善</div>
-              <div class="desc text-left textlight color_888">院设日间照料中心、病人康复中心、电子阅览室、健身房、理疗室及多功能活动室。</div>
-            </div>
+          <div class="item sheshi">
+            <div class="title ft11to24 text-left">设施完善</div>
+            <div class="desc ft9to16 text-left textlight color_888">院设日间照料中心、病人康复中心、电子阅览室、健身房、理疗室及多功能活动室。</div>
           </div>
-          <div class="item-wrap">
-            <div class="item renwen">
-              <div class="title text-left">人文关怀</div>
-              <div class="desc text-left textlight color_888">配有专职护理员，康复治疗师和营养师悉心照料，为老人健康保驾护航，晚年活得有尊严。</div>
-            </div>
+          <div class="item renwen">
+            <div class="title ft11to24 text-left">人文关怀</div>
+            <div class="desc ft9to16 text-left textlight color_888">配有专职护理员，康复治疗师和营养师悉心照料，为老人健康保驾护航，晚年活得有尊严。</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="target_feature" class="feature padding-top-50 bg_f7f7f7">
+    <div id="target_feature" class="feature padding_main bg_f7f7f7">
       <div class="container">
-        <div class="title text-center color_000">唯真诚与爱心不可辜负</div>
-        <div class="list">
-          <div class="item-wrap bg_fff">
+        <div class="title ft12to30 main_title_bottom_space text-center color_000">唯真诚与爱心不可辜负</div>
+        <div class="list ftsize_zero">
+          <div class="item bg_fff">
             <img class="feature-img" src="./img/feature-1.jpg" alt="真诚·呵护健康">
-            <div class="item">
-              <div class="title text-center color_1296db">真诚·呵护健康</div>
-              <div class="desc color_888">
-                每患者的衣（勤换洗），食（一日三餐或多餐、营养合理），住（舒适的环境、整洁的房间），行（救护车、轮椅代步），均有专人负责料理。根据老人的个人情况专项治疗、护理咨询。并结合肢体康复和娱乐健身，让老人颐养天年，让患者顺利康复。
-              </div>
+            <div class="title ft12to24 color_1296db">真诚·呵护健康</div>
+            <div class="desc text-left ft9to16 color_888">
+              每患者的衣（勤换洗），食（一日三餐或多餐、营养合理），住（舒适的环境、整洁的房间），行（救护车、轮椅代步），均有专人负责料理。根据老人的个人情况专项治疗、护理咨询。并结合肢体康复和娱乐健身，让老人颐养天年，让患者顺利康复。
             </div>
           </div>
-          <div class="item-wrap bg_fff">
+          <div class="item bg_fff">
             <img class="feature-img" src="./img/feature-2.jpg" alt="爱心·传递温暖">
-            <div class="item">
-              <div class="title text-center color_1296db">爱心·传递温暖</div>
-              <div class="desc color_888">
-                医生配有副主任医师、主治医师、住院医师三级，可满足三级查房要求，护理有主管护师、护师、护士，有专职的护理员、康复治疗师、营养师，尽可能地保障入住老人心理、生理上的需求，为老人的健康长寿保驾护航，让老人的晚年活得有尊严。
-              </div>
+            <div class="title ft12to24 color_1296db">爱心·传递温暖</div>
+            <div class="desc text-left ft9to16 color_888">
+              医生配有副主任医师、主治医师、住院医师三级，可满足三级查房要求，护理有主管护师、护师、护士，有专职的护理员、康复治疗师、营养师，尽可能地保障入住老人心理、生理上的需求，为老人的健康长寿保驾护航，让老人的晚年活得有尊严。
             </div>
           </div>
-          <div class="item-wrap bg_fff">
+          <div class="item bg_fff xs_hidden">
             <img class="feature-img" src="./img/feature-3.jpg" alt="服务·护理卫士">
-            <div class="item">
-              <div class="title text-center color_1296db">服务·护理卫士</div>
-              <div class="desc color_888">
-                我院实行医疗、护理、保健、娱乐、康复及临终关怀的全方位服务。患者入院后，一切均可托付给医院，家属只需要来院探望，已慰亲情即可。我院有主任医师查房，疑难病症及时请上级医院专家会诊。
-              </div>
+            <div class="title ft12to24 color_1296db">服务·护理卫士</div>
+            <div class="desc text-left ft9to16 color_888">
+              我院实行医疗、护理、保健、娱乐、康复及临终关怀的全方位服务。患者入院后，一切均可托付给医院，家属只需要来院探望，已慰亲情即可。我院有主任医师查房，疑难病症及时请上级医院专家会诊。
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="target_service" class="service bg_fff padding-top-50">
+    <div id="target_service" class="service bg_fff padding_main">
       <div class="container text-center">
-        <div class="title text-center">选择欣康，是服务也是责任</div>
+        <div class="title text-center main_title_ftsize">选择欣康，是服务也是责任</div>
         <img class="title-img" src="./img/heart.png" alt="选择欣康，是服务也是责任">
-        <div class="service-img-wrap text-center">
-          <img class="service-img" src="./img/service.png" alt="服务">
-          <div class="service-item zongzhi">
-            <div class="title text-right">服务宗旨</div>
-            <div class="desc text-left color_888">老年人的满意是我们追求的目标</div>
+        <div class="service-img-wrap text-center ftsize_zero">
+          <!--<img class="service-img" src="./img/service.png" alt="服务">-->
+          <div class="service_c">
+            <div class="service-item zongzhi">
+              <div class="title sub_title_ftsize text-right">服务宗旨</div>
+              <div class="desc desc_ftsize_lheight text-right color_888">老年人的满意是我们追求的目标</div>
+            </div>
+            <div class="service-item duixiang">
+              <div class="title sub_title_ftsize text-left">服务对象</div>
+              <div class="desc desc_ftsize_lheight text-left color_888">神经系统疾病、认知障碍老者、截瘫卧床患者、康复期需护理的老人、老年/慢性病人、肿瘤晚期患者、植物人、脑瘫患者、临终关怀者</div>
+            </div>
           </div>
-          <div class="service-item fanwei">
-            <div class="title text-left">服务范围</div>
-            <div class="desc text-left color_888">我院实行医疗、护理、保健、娱乐、康复<br>及临终关怀的全方位服务</div>
-          </div>
-          <div class="service-item duixiang">
-            <div class="title text-left">服务对象</div>
-            <div class="desc text-left color_888">神经系统疾病、认知障碍老者、截瘫卧床患者、康复期需护理的老人、<br> 老年/慢性病人、肿瘤晚期患者、植物人、脑瘫患者、临终关怀者</div>
+          <div class="service_c">
+            <div class="service-item fanwei">
+              <div class="title sub_title_ftsize text-left">服务范围</div>
+              <div class="desc desc_ftsize_lheight text-left color_888">我院实行医疗、护理、保健、娱乐、康复及临终关怀的全方位服务</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="target_facility" class="facility padding-top-50 bg_f7f7f7">
+    <div id="target_facility" class="facility padding_main bg_f7f7f7">
       <div  class="container">
-        <div class="title text-center">环境设施</div>
-        <div class="row">
+        <div class="title text-center main_title_ftsize main_title_bottom_space">环境设施</div>
+        <div class="row ftsize_zero">
           <div class="col-item">
-            <img class="col-img" src="./img/list-1.jpg" alt="餐厅">
-            <div class="col-text">餐厅</div>
+            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-1.jpg" alt="餐厅"></a>
+            <div class="col-text ft12to24">餐厅</div>
           </div>
           <div class="col-item">
-            <img class="col-img" src="./img/list-2.jpg" alt="庭院">
-            <div class="col-text">庭院</div>
+            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-2.jpg" alt="庭院"></a>
+            <div class="col-text ft12to24">庭院</div>
           </div>
-          <div class="col-item">
-            <img class="col-img" src="./img/list-3.jpg" alt="露台">
-            <div class="col-text">露台</div>
+          <div class="col-item xs_hidden">
+            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-3.jpg" alt="露台"></a>
+            <div class="col-text ft12to24">露台</div>
           </div>
-          <div class="col-item">
-            <img class="col-img" src="./img/list-4.jpg" alt="卫生间">
-            <div class="col-text">卫生间</div>
+          <div class="col-item xs_hidden mid_hidden">
+            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-4.jpg" alt="卫生间"></a>
+            <div class="col-text ft12to24">卫生间</div>
           </div>
         </div>
-        <div class="row">
+        <div class="row ftsize_zero">
           <div class="col-item">
-            <img class="col-img" src="./img/list-5.jpg" alt="大堂">
-            <div class="col-text">大堂</div>
+            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-5.jpg" alt="大堂"></a>
+            <div class="col-text ft12to24">大堂</div>
           </div>
           <div class="col-item">
-            <img class="col-img" src="./img/list-6.jpg" alt="茶水间">
-            <div class="col-text">茶水间</div>
+            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-6.jpg" alt="茶水间"></a>
+            <div class="col-text ft12to24">茶水间</div>
           </div>
-          <div class="col-item">
-            <img class="col-img" src="./img/list-7.jpg" alt="健身房">
-            <div class="col-text">健身房</div>
+          <div class="col-item xs_hidden">
+            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-7.jpg" alt="健身房"></a>
+            <div class="col-text ft12to24">健身房</div>
           </div>
-          <div class="col-item">
-            <img class="col-img" src="./img/list-8.jpg" alt="演艺厅">
-            <div class="col-text">演艺厅</div>
+          <div class="col-item xs_hidden">
+            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-8.jpg" alt="演艺厅"></a>
+            <div class="col-text ft12to24">演艺厅</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="target_about" class="about padding-top-50 bg_fff">
+    <div id="target_about" class="about padding_main bg_fff">
       <div class="container">
-        <div class="title text-center">关于欣康</div>
+        <div class="title text-center main_title_ftsize main_title_bottom_space">关于欣康</div>
         <div class="desc-wrap">
-          <div class="desc color_888">
+          <div class="desc desc_ftsize_lheight color_888">
             苏州欣康护理院位于风景优美的灵天路上，是苏州首家处于国家5A级景区内的养老机构，采用医养结合的最新养老模式。
   院建筑面积10000多平方米，其中绿化面积3000平方米，南可见灵岩山宝塔，西临靠木渎高中，北畔秀丽太平山，环境舒适，气候宜人。是个精心养老，
   安度晚年的好地方。
           </div>
-          <div class="desc color_888">
+          <div class="desc desc_ftsize_lheight color_888">
             内设日间照料中心、病人康复中心、电子阅览室、健身房、理疗室及多功能活动室，病区设有普通病房、二人病房、VIP病房、高级套房，共有床位350张。
   本院配有医疗、护理、康复、后勤保障、餐厅等，实行24小时值班制，医生配有副主任医师、主治医师、住院医师三级，可满足三级查房的要求，护理有主
   管护师、护师、护士，生活照料方面有专职的护理员，康复有康复治疗师，另外还配有营养师，尽可能地保障入住老人心理、生理上的需求，为老人的健康
   长寿保驾护航，让老人们的晚年活的有尊严。
           </div>
-          <div class="desc color_888">
+          <div class="desc desc_ftsize_lheight color_888">
             我们的宗旨是：以老人为中心，用专业的护理水准，真诚的爱心行动、优质的服务态度，提高老年人的生活和生命质量。老年人的满意是我们追求的目标。
   服务对象：需要生活护理、关怀照料的老人。
 
@@ -326,26 +352,27 @@
         </div>
         <div class="contact-wrap">
           <iframe class="map" src="./map.html" frameborder="0" scrolling="no"></iframe>
-          <div class="position">
+          <div class="position desc_ftsize_lheight">
             <div class="color_000 textbold">地址：苏州木渎灵天路589号</div>
             <div class="color_888">公交车（游4、315、662、4路）</div>
             <div class="color_888">地铁（一号线木渎终点站）</div>
           </div>
-          <div class="tel">
+          <div class="tel desc_ftsize_lheight">
             <div class="color_000 textbold">咨询电话：</div>
             <div class="color_000 textbold">0512-66535328</div>
-            <div class="color_000 textbold">13806219892、13862061167</div>
+            <div class="color_000 textbold">13806219892</div>
+            <div class="color_000 textbold">13862061167</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="footer bg_f7f7f7">
-      <div class="text-center ftsize_zero"><a class="copyright color_1296db" href="#">Copyright © 2016.苏州欣康护理院 All Rights Reserved.</a></div>
+      <div class="text-center ftsize_zero"><a class="copyright desc_ftsize_lheight color_1296db" href="#">Copyright © 2016.苏州欣康护理院 All Rights Reserved.</a></div>
       <div class="text-center ftsize_zero">
-        <div class="msg-wrap ftsize_zero">
-          <span class="msg-item color_1296db">访问数：<span class="num">2947</span></span>
-          <span class="msg-item">网站服务商<a class="zongbin color_1296db" href="http://www.zoombin.com/" target="_blank">纵缤科技</a></span>
+        <div class="msg-wrap">
+          <span class="msg-item desc_ftsize_lheight color_1296db">访问数：<span class="num">2947</span></span>
+          <span class="msg-item desc_ftsize_lheight">网站由<a class="zongbin color_1296db" href="http://www.zoombin.com/" target="_blank">纵缤科技</a>制作</span>
         </div>
       </div>
     </div>
