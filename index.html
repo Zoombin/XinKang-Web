@@ -7,22 +7,30 @@
           content="width=device-width,initial-scale=1.0,maximum-scale=1.5,
     minimum-scale=1.0,telephone=no">
     <link href="./css/main.css" rel="stylesheet">
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/jquery.slides.min.js"></script>
   </head>
   <body>
 
-    <div id="carousel" class="carousel">
+    <div class="carousel">
       <div class="header-wrap">
         <div class="header container clearfix">
-          <div class="name textmedium ft12to30">苏州欣康护理院<span class="xs_hidden">网站由<a href="http://www.zoombin.com/">纵缤科技</a>制作</span></div>
+          <div class="name textmedium ft12to30">苏州欣康护理院<span class="xs_hidden">网站由<a target="_blank" href="http://www.zoombin.com/">纵缤科技</a>制作</span></div>
           <ul class="nav textlight ftsize_zero">
-            <li><a href="http://mp.weixin.qq.com/s/66LH-ATPl6BhApUmcVBDxA" class="ft9to18">老有所养</a></li>
-            <li><a href="http://mp.weixin.qq.com/s/vrTY9Bin9uJnS0u7pROIvA" class="ft9to18">欣康服务</a></li>
-            <li><a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ" class="ft9to18">环境设施</a></li>
-            <li><a href="http://mp.weixin.qq.com/s/66LH-ATPl6BhApUmcVBDxA" class="ft9to18">关于欣康</a></li>
+            <li><a target="_blank" href="http://mp.weixin.qq.com/s/66LH-ATPl6BhApUmcVBDxA" class="ft9to18">老有所养</a></li>
+            <li><a target="_blank" href="http://mp.weixin.qq.com/s/vrTY9Bin9uJnS0u7pROIvA" class="ft9to18">欣康服务</a></li>
+            <li><a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ" class="ft9to18">环境设施</a></li>
+            <li><a target="_blank" href="http://mp.weixin.qq.com/s/66LH-ATPl6BhApUmcVBDxA" class="ft9to18">关于欣康</a></li>
           </ul>
         </div>
       </div>
-      <div id="carousel-imgs-wrap" class="carousel-imgs-wrap clearfix" style="top: 0;left: -100%;">
+      <div id="slides">
+        <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="苏州首家5A级景区内养老机构">
+        <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="服务对象">
+        <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="护理医生">
+      </div>
+      
+      <!--<div id="carousel-imgs-wrap" class="carousel-imgs-wrap clearfix" style="top: 0;left: -100%;">
         <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="护理医生">
         <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="苏州首家5A级景区内养老机构">
         <img class="carousel-img" src="./img/phone-carousel-1.jpg" alt="服务对象">
@@ -33,183 +41,84 @@
         <span data-index="1" class="circle"></span>
         <span data-index="2" class="circle"></span>
         <span data-index="3" class="circle"></span>
-      </div>
+      </div>-->
       <!--<a id="prev" style="display: hidden" class="prev" href="javascript:;">&lt;</a>-->
-      <a id="next" class="next-arrow" href="javascript:;"></a>
+      <!--<a id="next" class="next-arrow" href="javascript:;"></a>-->
+      
     </div>
 
     <script>
-      var imgPath = "./img/",
-          name = "carousel",
-          phonePrefix = "phone";
-      function changeImgSrc() {
-        var width = window.innerWidth ? window.innerWidth : screen.width;
-        var isPhone = false;
-        if (width >= 320 && width <768) {
-          isPhone = true;
-        } else if (width >= 768) {
-          isPhone = false;
-        }
-
-        var imgList = document.getElementById('carousel-imgs-wrap').getElementsByTagName('img'),
-            len = imgList.length,
-            true_len = len - 2,
-            num = null,
-            current = null;
-        for (var i = 1; i <= len; i++) {
-          current = imgList[i-1];
-          if (i === 1) {
-            num = true_len;
-          } else if (i === len) {
-            num = 1;
-          } else {
-            num = i-1;
+      $(function() {
+        // 判断屏幕尺寸
+        var cfg = {
+          imgPath: './img/',
+          name: 'carousel',
+          phonePrefix: 'phone',
+          container_w: 0,
+          container_h: 0,
+          minWidth: 320,
+          maxWidth: 768,
+          isPhone: false,
+          imgsWrapCls: '.carousel-img',
+          imgExt: '.jpg'
+        };
+        // var imgPath = './img/',
+        //     name = 'carousel',
+        //     phonePrefix = 'phone',
+        //     container_w = 0,
+        //     container_h = 0;
+        function changeImgSrc(cfg) {
+          var width = $(window).width(),
+              isPhone = false;
+          if (width >=cfg.minWidth && width < cfg.maxWidth) {
+            cfg.isPhone = true;
+            cfg.container_w = 750;
+            cfg.container_h = 650;
+          } else if (width >= cfg.maxWidth) {
+            cfg.isPhone = false;
+            cfg.container_w = 1440;
+            cfg.container_h = 650;
           }
 
-          if(isPhone) current.src = imgPath + phonePrefix + '-' + name + '-' + num + '.jpg';
-          else current.src = imgPath + name + '-' + num + '.jpg';
-        }
-      }
-
-      changeImgSrc();
-    </script>
-
-    <script>
-      var carousel = document.getElementById('carousel'),
-          imgList = document.getElementById('carousel-imgs-wrap'),
-          circles = document.getElementById('carousel-circles-wrap').getElementsByTagName('span'),
-          prev = document.getElementById('prev'),
-          next = document.getElementById('next'),
-          index = 1,  //当前激活的圆点
-          len = imgList.getElementsByTagName('img').length,
-          isAnimated = false, //动画状态
-          // interval = 3000,
-          timer = null, //自动播放定时器
-          minLeft = -100,  
-          maxLeft = -(len - 2) * 100,
-          activeCls = 'active',
-          circleCls = 'circle';
-
-      function getNum(str) {
-        return parseInt(str.replace("%",""));
-      }
-      
-      // 清楚圆点上的激活状态
-      function clearActive(containCls, replaceCls) {
-        for (var i = 0 ; i < circles.length ; i++) {
-          if (circles[i].className.indexOf(containCls) !== -1) {
-            circles[i].className = replaceCls;
-            break;
-          }
-        }
-      }
-
-      // 为对应圆点添加激活状态
-      function showCircle(circle, addCls) {
-        clearActive(activeCls, circleCls);
-        circle.className += " " + addCls;
-      }
-
-      // 动画函数,内部使用setTimeout执行定时递归
-      function animate(offset) {
-        isAnimated = true;
-        var newLeft = getNum(imgList.style.left) + offset,
-            time = 450, //位移总时间
-            interval = 10, //位移间隔时间
-            speed = offset / (time / interval);  //每次位移量
-        
-        function go() {
-          // 容器框向右移动,视觉上图片向左移动
-          var currentLeft = getNum(imgList.style.left);
-          if ((speed < 0 && currentLeft > newLeft) || (speed > 0 && currentLeft < newLeft)) {
-            imgList.style.left = currentLeft + speed + '%';
-            // 没有到达限定值则继续执行go
-            setTimeout(go, interval);
-          } else {
-            // 到达限定值,更改动画状态量,并且判断是否移动到第一和最后一张的附属图片
-            isAnimated = false;
-            imgList.style.left = newLeft + '%';
-            if (newLeft > minLeft) {
-              imgList.style.left = maxLeft + '%';
-            } else if (newLeft < maxLeft) {
-              imgList.style.left = minLeft + '%';
+          var $imgList = $(cfg.imgsWrapCls),
+              len = $imgList.length,
+              i = 1,
+              $current = null;
+          // console.log($imgList);
+          $imgList.each(function(index, $ele) {
+            // console.log($ele);
+            if (cfg.isPhone) {
+              $(this).attr('src', cfg.imgPath + cfg.phonePrefix + '-' + cfg.name + '-' + (index + 1) + cfg.imgExt);
+            } else {
+              $(this).attr('src', cfg.imgPath + cfg.name + '-' + (index + 1) + cfg.imgExt);
             }
+          });
+        }
+        changeImgSrc(cfg);
+        $('#slides').slidesjs({
+          width: cfg.container_w,
+          height: cfg.container_h,
+          play: {
+            active: false,
+            auto: true,
+            interval: 4000,
+            swap: false
+          },
+          effect: {
+            slide: {
+              speed: 2000
+            }
+          },
+          pagination: {
+            active: true,
+            effect: 'slide'
+          },
+          navigation: {
+            active: false
           }
-        }
-        go();
-      }
-
-      // 使用setInterval执行自动播放
-      function play() {
-        timer = setInterval(function(){
-          next.onclick();
-        },3000);
-      }
-
-      // 清楚timer定时器,取消自动播放
-      function stop() {
-        clearInterval(timer);
-      }
-
-      // 自动播放实际就是间隔固定时间点击next按钮
-      // next点击时间内部执行动画
-      next.onclick = function() {
-        if (isAnimated) return false;
-        if (index === circles.length) {
-          index = 1;
-        } else {
-          index++;
-        }
-        animate(-100);
-        showCircle(circles[index - 1], activeCls);
-        return false;
-      }
-
-      // prev.onclick = function() {
-      //   if (isAnimated) return false;
-      //   if (index === 1) {
-      //     index = circles.length;
-      //   } else {
-      //     index--;
-      //   }
-      //   animate(100);
-      //   showCircle();
-      //   return false;
-      // }
-
-      // 取消自动播放
-      // imgList.onmouseover = function() {
-      //   // console.log("一上去");
-      //   stop();
-      //   return false;
-      // }
-
-      // // 执行自动播放
-      // imgList.onmouseout = function() {
-      //   play();
-      //   return false;
-      // }
-
-      // 为圆点绑定事件
-      // for(var i = 0; i < circles.length; i++) {
-      //   circles[i].onclick = function() {
-      //     if (this.className.indexOf(activeCls) !== -1) {
-      //       // console.log("不动");
-      //       return false;
-      //     }
-      //     if (isAnimated) return false;
-      //     var myindex = parseInt(this.getAttribute('data-index'));
-      //     var offset = -100 * (myindex -  index);
-      //     animate(offset);
-      //     index = myindex;
-      //     showCircle(circles[index - 1], activeCls);
-      //     return false;
-      //   }
-      // }
-      showCircle(circles[index - 1], activeCls);
-      play();
+        })
+      });
     </script>
-
 
     <div class="environment padding_main bg_fff">
       <div class="container text-center ">
@@ -295,37 +204,37 @@
         <div class="title text-center ft12to30 main_title_bottom_space">环境设施</div>
         <div class="row ftsize_zero">
           <div class="col-item">
-            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-1.jpg" alt="餐厅"></a>
+            <a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-1.jpg" alt="餐厅"></a>
             <div class="col-text ft12to24">餐厅</div>
           </div>
           <div class="col-item">
-            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-2.jpg" alt="庭院"></a>
+            <a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-2.jpg" alt="庭院"></a>
             <div class="col-text ft12to24">庭院</div>
           </div>
           <div class="col-item xs_hidden">
-            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-3.jpg" alt="露台"></a>
+            <a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-3.jpg" alt="露台"></a>
             <div class="col-text ft12to24">露台</div>
           </div>
           <div class="col-item xs_hidden mid_hidden">
-            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-4.jpg" alt="卫生间"></a>
+            <a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-4.jpg" alt="卫生间"></a>
             <div class="col-text ft12to24">卫生间</div>
           </div>
         </div>
         <div class="row ftsize_zero">
           <div class="col-item">
-            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-5.jpg" alt="大堂"></a>
+            <a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-5.jpg" alt="大堂"></a>
             <div class="col-text ft12to24">大堂</div>
           </div>
           <div class="col-item">
-            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-6.jpg" alt="茶水间"></a>
+            <a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-6.jpg" alt="茶水间"></a>
             <div class="col-text ft12to24">茶水间</div>
           </div>
           <div class="col-item xs_hidden">
-            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-7.jpg" alt="健身房"></a>
+            <a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-7.jpg" alt="健身房"></a>
             <div class="col-text ft12to24">健身房</div>
           </div>
           <div class="col-item xs_hidden">
-            <a href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-8.jpg" alt="演艺厅"></a>
+            <a target="_blank" href="http://mp.weixin.qq.com/s/RaQFVIKzVaYpQiUv2vXoKQ"><img class="col-img" src="./img/list-8.jpg" alt="演艺厅"></a>
             <div class="col-text ft12to24">演艺厅</div>
           </div>
         </div>
@@ -336,34 +245,35 @@
       <div class="container">
         <div class="title text-center ft12to30 main_title_bottom_space">关于欣康</div>
         <div class="desc-wrap">
-          <div class="desc ft10to18_lh color_888">
+          <div class="desc ft11to18_lh color_888">
             苏州欣康护理院位于风景优美的灵天路上，是苏州首家处于国家5A级景区内的养老机构，采用医养结合的最新养老模式。
   院建筑面积10000多平方米，其中绿化面积3000平方米，南可见灵岩山宝塔，西临靠木渎高中，北畔秀丽太平山，环境舒适，气候宜人。是个精心养老，
   安度晚年的好地方。
           </div>
-          <div class="desc ft10to18_lh color_888">
+          <div class="desc ft11to18_lh color_888">
             内设日间照料中心、病人康复中心、电子阅览室、健身房、理疗室及多功能活动室，病区设有普通病房、二人病房、VIP病房、高级套房，共有床位350张。
   本院配有医疗、护理、康复、后勤保障、餐厅等，实行24小时值班制，医生配有副主任医师、主治医师、住院医师三级，可满足三级查房的要求，护理有主
   管护师、护师、护士，生活照料方面有专职的护理员，康复有康复治疗师，另外还配有营养师，尽可能地保障入住老人心理、生理上的需求，为老人的健康
   长寿保驾护航，让老人们的晚年活的有尊严。
           </div>
-          <div class="desc ft10to18_lh color_888">
+          <div class="desc ft11to18_lh color_888">
             我们的宗旨是：以老人为中心，用专业的护理水准，真诚的爱心行动、优质的服务态度，提高老年人的生活和生命质量。老年人的满意是我们追求的目标。
   服务对象：需要生活护理、关怀照料的老人。
           </div>
         </div>
-        <div class="contact-wrap">
+        <div class="about_bottom_wrap ftsize_zero">
           <iframe class="map" src="./map.html" frameborder="0" scrolling="no"></iframe>
-          <div class="position">
-            <div class="position_item color_000 ft9to18 textbold">地址：苏州木渎灵天路589号</div>
-            <div class="position_item color_888 ft9to16_lh">公交车（游4、315、662、4路）<br>地铁（一号线木渎终点站）</div>
-            <!--<div class="color_888">地铁（一号线木渎终点站）</div>-->
-          </div>
-          <div class="tel ft9to18">
-            <div class="tel_item color_000 textbold">咨询电话：</div>
-            <div class="tel_item color_000 textbold">0512-66535328</div>
-            <div class="tel_item color_000 textbold">13806219892</div>
-            <div class="tel_item color_000 textbold">13862061167</div>
+          <div class="contact-wrap clearfix">
+            <div class="position ftsize_zero">
+              <div class="title color_000 ft12to18 textbold">地址：苏州木渎灵天路589号</div>
+              <div class="position_item color_888 ft12to18">公交车（游4、315、662、4路）<br>地铁（一号线木渎终点站）</div>
+            </div>
+            <div class="tel ftsize_zero">
+              <div class="title ft12to18 color_000 textbold">咨询电话：</div>
+              <div class="tel_item ft12to18 color_000 textbold">0512-66535328</div>
+              <div class="tel_item ft12to18 color_000 textbold">13806219892</div>
+              <div class="tel_item ft12to18 color_000 textbold">18501598339</div>
+            </div>
           </div>
         </div>
       </div>
@@ -374,7 +284,7 @@
       <div class="text-center ftsize_zero">
         <div class="msg-wrap">
           <span class="msg-item ft9to18 color_1296db">访问数：<span class="num">2947</span></span>
-          <span class="msg-item ft9to18">网站由<a class="zongbin color_1296db" href="http://www.zoombin.com/" target="_blank">纵缤科技</a>制作</span>
+          <span class="msg-item ft9to18">网站由<a class="zongbin color_1296db" target="_blank" href="http://www.zoombin.com/" target="_blank">纵缤科技</a>制作</span>
         </div>
       </div>
     </div>
