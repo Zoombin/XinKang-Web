@@ -430,6 +430,16 @@ img {
     margin-top: 22px;
   }
 
+  .carousel .name span {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  .carousel .name span a {
+    display: inline-block;
+    color: inherit;
+  }
+
   .carousel .nav {
     margin-top: 22px;
   }
@@ -453,6 +463,10 @@ img {
     margin-top: 34px;
   }
 
+  .carousel .name span {
+    font-size: 13px;
+  }
+
   .carousel .nav {
     margin-top: 34px;
   }
@@ -474,6 +488,10 @@ img {
 
   .carousel .name {
     margin-top: 46px;
+  }
+
+  .carousel .name span {
+    font-size: 15px;
   }
 
   .carousel .nav {
