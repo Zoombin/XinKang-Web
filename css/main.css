@@ -144,10 +144,6 @@ img {
   font-size: 9px;
 }
 
-.ft9to16 {
-  font-size: 9px;
-  line-height: 11px;
-}
 
 .ft11to24 {
   font-size: 11px;
@@ -155,6 +151,20 @@ img {
 
 .ft12to24 {
   font-size: 12px;
+}
+
+.ft12to20 {
+  font-size: 12px;
+}
+
+.ft9to16_lh {
+  font-size: 9px;
+  line-height: 11px;
+}
+
+.ft10to18_lh {
+  font-size: 10px;
+  line-height: 16px;
 }
 
 .main_title_ftsize {
@@ -197,9 +207,14 @@ img {
     font-size: 12px;
   }
 
-  .ft9to16 {
+  .ft9to16_lh {
     font-size: 11px;
     line-height: 15px;
+  }
+
+  .ft10to18_lh {
+    font-size: 14px;
+    line-height: 20px;
   }
 
   .ft11to24 {
@@ -208,6 +223,10 @@ img {
 
   .ft12to24 {
     font-size: 16px;
+  }
+
+  .ft12to20 {
+    font-size: 14px;
   }
 
   .main_title_ftsize {
@@ -245,9 +264,14 @@ img {
     font-size: 15px;
   }
 
-  .ft9to16 {
+  .ft9to16_lh {
     font-size: 14px;
     line-height: 20px;
+  }
+
+  .ft10to18_lh {
+    font-size: 16px;
+    line-height: 26px;
   }
 
   .ft12to24 {
@@ -256,6 +280,10 @@ img {
 
   .ft11to24 {
     font-size: 20px;
+  }
+  
+  .ft12to20 {
+    font-size: 18px;
   }
 
   .main_title_ftsize {
@@ -294,9 +322,14 @@ img {
     font-size: 18px;
   }
 
-  .ft9to16 {
+  .ft9to16_lh {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  .ft10to18_lh {
+    font-size: 18px;
+    line-height: 30px;
   }
 
   .ft11to24 {
@@ -305,6 +338,10 @@ img {
 
   .ft12to24 {
     font-size: 24px;
+  }
+
+  .ft12to20 {
+    font-size: 20px;
   }
 
   .main_title_ftsize {
@@ -386,8 +423,6 @@ img {
     height: 62px;
     background-color: transparent;
     background-image: -webkit-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
-    background-image: -o-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
-    background-image: -moz-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
     background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
   }
 
@@ -702,13 +737,13 @@ img {
 }
 
 .feature .item {
-  width: calc(50% - 8px);
+  width: calc(50% - 4px);
   padding-bottom: 1012px;
   margin-bottom: -1000px;
 }
 
 .feature .item + .item {
-  margin-left: 16px;
+  margin-left: 8px;
 }
 
 .feature .item .title {
@@ -726,12 +761,12 @@ img {
 
 @media (min-width: 768px) {
   .feature .item {
-    width: calc(33.33333333% - 20px);
+    width: calc(33.33333333% - 10px);
     padding-bottom: 1015px;
   }
 
   .feature .item + .item {
-    margin-left: 30px;
+    margin-left: 15px;
   }
 
   .feature .item .title {
@@ -745,7 +780,12 @@ img {
 
 @media (min-width: 992px) {
   .feature .item {
+    width: calc(33.333333333% - 16px);
     padding-bottom: 1023px;
+  }
+
+  .feature .item + .item {
+    margin-left: 24px;
   }
 
   .feature .item .title {
@@ -757,32 +797,37 @@ img {
   }
 }
 
-/*@media (min-width: 1200px) {
+@media (min-width: 1200px) {
   .feature .item {
-    padding-bottom: 1015px;
+    width: calc(33.333333333% - 20px);
+    padding-bottom: 1023px;
+  }
+
+  .feature .item + .item {
+    margin-left: 30px;
   }
 
   .feature .item .title {
-    margin: 10px 0;
+    margin: 15px 0;
   }
-
-  .feature .item .desc {
-    padding: 0 15px;
-  }
-}*/
+}
 
 /*第四部分=============选择欣康，是服务也是责任*/
 /*待议*/
+.service {
+  padding-bottom: 60px;
+}
+
 .service .title-img {
   width: 53px;
   height: 12px;
 }
 
 .service-img-wrap {
-  height: 122px;
+  height: 106px;
   margin-top: 10px;
   background: url(../img/service.png) 52% top no-repeat;
-  background-size: 129px 122px;
+  background-size: 112px 106px;
 }
 
 .service_c {
@@ -794,19 +839,148 @@ img {
 }
 
 .service-item {
-  /*position: absolute;*/
+  position: absolute;
+}
+
+.service-item .title {
+  margin-bottom: 4px;
 }
 
 .zongzhi {
-  position: absolute;
-  right: 65px;
+  width: auto;
+  right: 52px;
   top: 0;
 }
 
 .duixiang {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  width: 100%;
+  bottom: 0px;
+  left: -80px;
+  -webkit-transform: translate3d(0, 80%, 0);
+          transform: translate3d(0, 80%, 0);
+}
+
+.fanwei {
+  width: auto;
+  top: 35%;
+  left: 64px;
+}
+
+@media (min-width: 480px) {
+  .service {
+    padding-bottom: 40px;
+  }
+
+  .fanwei {
+    left: 68px;
+  }
+}
+
+@media (min-width: 540px) {
+  .service-img-wrap {
+    height: 174px;
+    margin-top: 15px;
+    background: url(../img/service.png) 52% top no-repeat;
+    background-size: 184px 174px;
+  }
+
+  .zongzhi {
+    width: auto;
+    right: 86px;
+    top: 8px;
+  }
+
+  .duixiang {
+    width: 70%;
+    bottom: 0px;
+    left: -102px;
+    -webkit-transform: translate3d(0, 70%, 0);
+            transform: translate3d(0, 70%, 0);
+  }
+
+  .fanwei {
+    width: 50%;
+    top: 35%;
+    left: 108px;
+  }
+}
+
+@media (min-width: 768px) {
+  .service {
+    padding-bottom: 50px;
+  }
+  .service-img-wrap {
+    height: 244px;
+    margin-top: 25px;
+    background: url(../img/service.png) 52% top no-repeat;
+    background-size: 257px 244px;
+  }
+
+  .zongzhi {
+    width: auto;
+    right: 120px;
+    top: 12px;
+  }
+
+  .duixiang {
+    width: 70%;
+    bottom: 0px;
+    left: -132px;
+    -webkit-transform: translate3d(0, 70%, 0);
+            transform: translate3d(0, 70%, 0);
+  }
+
+  .fanwei {
+    width: 50%;
+    top: 35%;
+    left: 148px;
+  }
+}
+
+@media (min-width: 992px) {
+  .service {
+    padding-bottom: 60px;
+  }
+
+  .duixiang {
+    width: 70%;
+    bottom: 0px;
+    left: -142px;
+    -webkit-transform: translate3d(0, 70%, 0);
+            transform: translate3d(0, 70%, 0);
+  }
+}
+
+@media (min-width: 1200px) {
+  .service {
+    padding-bottom: 80px;
+  }
+  .service-img-wrap {
+    height: 348px;
+    margin-top: 45px;
+    background: url(../img/service.png) 51% top no-repeat;
+    background-size: 367px 348px;
+  }
+
+  .zongzhi {
+    width: auto;
+    right: 170px;
+    top: 22px;
+  }
+
+  .duixiang {
+    width: 70%;
+    bottom: 0px;
+    left: -192px;
+    -webkit-transform: translate3d(0, 70%, 0);
+            transform: translate3d(0, 70%, 0);
+  }
+
+  .fanwei {
+    width: 50%;
+    top: 35%;
+    left: 214px;
+  }
 }
 
 /*第五部分==============环境设施*/
@@ -866,9 +1040,6 @@ img {
 
 
 /*第六部分===============关于欣康*/
-.about .desc {
-  /*text-indent: 16px;*/
-}
 .about .desc + .desc {
   margin-top: 5px;
 }
@@ -880,8 +1051,8 @@ img {
 
 .map {
   border: 1px solid #1296db;
-  width: 40%;
-  height: 130px;
+  width: 45%;
+  height: 122px;
 }
 
 .position div:first-child,
@@ -891,23 +1062,33 @@ img {
 
 .position {
   position: absolute;
-  left: 45%;
+  left: 47%;
   top: 15px;
   padding-left: 30px;
   background: url(../img/position.png) 4px top no-repeat;
   background-size: 16px 23px;
 }
 
+
 .tel {
   position: absolute;
-  left: 45%;
+  left: 47%;
   bottom: 15px;
   padding-left: 30px;
   background: url(../img/tel.png) left top no-repeat;
   background-size: 24px 17px;
 }
 
+.tel_item + .tel_item,
+.position_item + .position_item {
+  margin-top: 2px;
+}
+
 @media (min-width: 768px) {
+  .map {
+    height: 173px;
+  }
+
   .about .desc + .desc {
     margin-top: 10px;
   }
@@ -924,16 +1105,16 @@ img {
 
   .position {
     left: 50%;
-    padding-left: 55px;
-    background: url(../img/position.png) 7px top no-repeat;
-    background-size: 32px 46px;
+    padding-left: 45px;
+    background: url(../img/position.png) 4px top no-repeat;
+    background-size: 28px 40px;
   }
 
   .tel {
     left: 50%;
-    padding-left: 55px;
+    padding-left: 45px;
     background: url(../img/tel.png) left top no-repeat;
-    background-size: 47px 34px;
+    background-size: 35px 21px;
   }
 }
 
@@ -941,17 +1122,18 @@ img {
   .map {
     border: 4px solid #1296db;
     height: 250px;
+    margin-left: 8%;
   }
 
     .position {
-      left: 50%;
+      left: 58%;
       padding-left: 70px;
       background: url(../img/position.png) 9px top no-repeat;
       background-size: 40px 57px;
     }
 
     .tel {
-      left: 50%;
+      left: 58%;
       padding-left: 70px;
       background: url(../img/tel.png) left top no-repeat;
       background-size: 58px 42px;
@@ -959,6 +1141,7 @@ img {
 }
 
 
+/*第七部分===============页脚*/
 .footer {
   padding: 5px 0;
 }
