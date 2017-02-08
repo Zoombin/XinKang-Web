@@ -1058,6 +1058,9 @@ img {
 
 
 /*第六部分===============关于欣康*/
+.about {
+  border-bottom: 1px solid #1296db;
+}
 .about .desc + .desc {
   margin-top: 5px;
 }
@@ -1103,6 +1106,9 @@ img {
 }
 
 @media (min-width: 768px) {
+  .about {
+    border-bottom: 2px solid #1296db;
+  }
   .map {
     height: 173px;
   }
@@ -1137,25 +1143,28 @@ img {
 }
 
 @media (min-width: 1200px) {
+  .about {
+    border-bottom: 4px solid #1296db;
+  }
   .map {
     border: 4px solid #1296db;
     height: 250px;
     margin-left: 8%;
   }
 
-    .position {
-      left: 58%;
-      padding-left: 70px;
-      background: url(../img/position.png) 9px top no-repeat;
-      background-size: 40px 57px;
-    }
+  .position {
+    left: 58%;
+    padding-left: 70px;
+    background: url(../img/position.png) 9px top no-repeat;
+    background-size: 40px 57px;
+  }
 
-    .tel {
-      left: 58%;
-      padding-left: 70px;
-      background: url(../img/tel.png) left top no-repeat;
-      background-size: 58px 42px;
-    }
+  .tel {
+    left: 58%;
+    padding-left: 70px;
+    background: url(../img/tel.png) left top no-repeat;
+    background-size: 58px 42px;
+  }
 }
 
 
