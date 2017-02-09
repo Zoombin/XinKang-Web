@@ -25,7 +25,7 @@
     function initMap(){
         createMap();//创建地图
         setMapEvent();//设置地图事件
-        // addMapControl();//向地图添加控件
+        addMapControl();//向地图添加控件
         addMarker();//向地图中添加marker
     }
     
@@ -63,8 +63,8 @@
           var p1 = json.point.split("|")[1];
           var point = new BMap.Point(p0,p1);
           var marker = new BMap.Marker(point);
-          var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb - json.icon.x + 10,-20)});
-			    marker.setLabel(label);
+        //   var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb - json.icon.x + 10,-20)});
+		// 	    marker.setLabel(label);
           map.addOverlay(marker);
           label.setStyle({
             borderColor:"#808080",
